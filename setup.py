@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
     required = f.read()
 
 setup(
-    name='town_transport',
+    name='transport-com-madrid',
     version='0.0.1',
     description='Send publi email package',
     long_description=readme,

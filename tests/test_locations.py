@@ -1,5 +1,5 @@
 import unittest
-from transport_com_madrid import CartesianLocation, GPSLocation
+from transport_com_madrid.locations import CartesianLocation, GPSLocation
 
 class TestLocations(unittest.TestCase):
     def test_cartesian_location(self):
