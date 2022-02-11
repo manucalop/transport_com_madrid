@@ -1,1 +1,1 @@
-from transport_com_madrid.src.hello_world import hello
+from transport_com_madrid.src.locations import *
