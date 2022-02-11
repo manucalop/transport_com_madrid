@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from pyproj import Geod
 
 class Coordinates(ABC):
     pass
@@ -35,7 +36,7 @@ class CartesianLocation(CartesianCoordinates,Location):
 class GPSLocation(GPSCoordinates,Location):
     def __init__(self, lat : float, lon : float, height : float = 0):
         super().__init__(lat, lon, height)
+        self.geod = Geod(ellps="WGS84")
     def get_distance(self, coordinates : GPSCoordinates): # : FlatLocation
-        pass #TODO
-
-
+        return self.geod.line_length([self.lat, coordinates.lat],
+                                     [self.lon, coordinates.lon])
