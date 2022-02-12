@@ -6,20 +6,11 @@ class ILocation(ABC):
     def get_distance(self, coordinates : tuple) -> float:
         pass
 
-    @abstractmethod
-    def set_coordinates(self, coordinates : tuple) -> None:
-        pass
-
 class GPSLocation(ILocation):
     def __init__(self, lat : float, lon : float):
-        self.lat = lat
-        self.lon = lon
+        self.coordinates = (lat, lon)
         self.geod = Geod(ellps="WGS84")
 
     def get_distance(self, coordinates : tuple) -> float:
-        return self.geod.line_length([self.lat, coordinates[0]],
-                                     [self.lon, coordinates[1]])
-
-    def set_coordinates(self, coordinates : tuple) -> None:
-        self.lat = coordinates[0]
-        self.lon = coordinates[1]
+        return self.geod.line_length([self.coordinates[0], coordinates[0]],
+                                     [self.coordinates[1], coordinates[1]])
