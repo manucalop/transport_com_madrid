@@ -1,0 +1,3 @@
+stations_files:
+    bicycle_stations: './data/bicycles_madrid.xlsx'
+    bus_stations: './data/buses_madrid.csv' 
