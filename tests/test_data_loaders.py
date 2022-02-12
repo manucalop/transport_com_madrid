@@ -4,8 +4,7 @@ from transport_com_madrid.locations import GPSLocation
 
 class TestBicycleStationsDataLoader(unittest.TestCase):
     def setUp(self):
-        filename = './data/bicycles_madrid.xlsx'
-        self.dl = BicycleStationsDataLoader(filename)
+        self.dl = BicycleStationsDataLoader()
 
     def test_load_data(self):
         any_null_values = self.dl.data[['latitude', 'longitude']].isnull().values.any()
@@ -24,8 +23,7 @@ class TestBicycleStationsDataLoader(unittest.TestCase):
 
 class TestBusStationsDataLoader(unittest.TestCase):
     def setUp(self):
-        filename = './data/buses_madrid.csv'
-        self.dl = BusStationsDataLoader(filename)
+        self.dl = BusStationsDataLoader()
 
     def test_load_data(self):
         any_null_values = self.dl.data[['latitude', 'longitude']].isnull().values.any()
