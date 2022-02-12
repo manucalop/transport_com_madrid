@@ -1,4 +1,5 @@
 from abc import abstractmethod, ABC
+import yaml
 import pandas as pd
 # Local imports
 from .locations import ILocation
@@ -18,10 +19,14 @@ class IStationsDataLoader(ABC):
         pass
 
 class BicycleStationsDataLoader(IStationsDataLoader):
-    def __init__(self, filename : str):
+    def __init__(self):
         # Load data on creation
-        self.filename = filename
+        with open('./config.yaml') as file:
+            data = yaml.load(file, Loader=yaml.FullLoader)
+
+        self.filename = data['stations_files']['bicycle_stations']
         self.load_data()
+
 
     def load_data(self):
         self.data = pd.read_excel(self.filename)
@@ -43,9 +48,12 @@ class BicycleStationsDataLoader(IStationsDataLoader):
                          (self.data['name'] == name)]
 
 class BusStationsDataLoader(IStationsDataLoader):
-    def __init__(self, filename):
+    def __init__(self):
         # Load data on creation
-        self.filename = filename
+        with open('./config.yaml') as file:
+            data = yaml.load(file, Loader=yaml.FullLoader)
+
+        self.filename = data['stations_files']['bus_stations']
         self.load_data()
 
     def load_data(self):
