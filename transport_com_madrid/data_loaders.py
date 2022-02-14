@@ -57,7 +57,7 @@ class BusStationsDataLoader(IStationsDataLoader):
         self.load_data()
 
     def load_data(self):
-        df = pd.read_csv('./data/buses_madrid.csv')
+        df = pd.read_csv(self.filename)
         #Drop missing location values
         df.dropna(subset=['X','Y'], inplace=True)
         #Get latitude and longitude columns
